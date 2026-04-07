@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SistemaPontoCego.Application/EstiloUrbano.Application.csproj" />
+  <Project Path="SistemaPontoCego.Infrastructure/EstiloUrbano.Infrastructure.csproj" />
+  <Project Path="SistemaPontoCego.UI/EstiloUrbano.UI.csproj" />
+  <Project Path="SistemaPonto_Cego.Domain/EstiloUrbano.Domain.csproj" />
+</Solution>

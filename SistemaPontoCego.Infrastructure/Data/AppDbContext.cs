@@ -1,8 +1,8 @@
 ﻿using System.Runtime.ConstrainedExecution;
 using Microsoft.EntityFrameworkCore;
-using SistemaPontoCego.Domain.Entities;
+using EstiloUrbano.Domain.Entities;
 
-namespace SistemaPontoCego.Infrastructure.Data
+namespace EstiloUrbano.Infrastructure.Data
 {
     public class AppDbContext : DbContext
     {
@@ -19,5 +19,7 @@ namespace SistemaPontoCego.Infrastructure.Data
         public DbSet<Cor> Cor { get; set; }
         public DbSet<Tamanho> Tamanho { get; set; }
         public DbSet<Loja> Lojas { get; set; }
+
+        public DbSet<Pagamento> Pagamento { get; set; }
     }
 }

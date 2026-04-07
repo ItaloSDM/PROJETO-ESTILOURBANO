@@ -9,7 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SistemaPonto_Cego.Domain\SistemaPontoCego.Domain.csproj" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaPonto_Cego.Domain\EstiloUrbano.Domain.csproj" />
   </ItemGroup>
 
 </Project>

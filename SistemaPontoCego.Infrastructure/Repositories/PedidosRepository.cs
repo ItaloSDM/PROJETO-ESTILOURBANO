@@ -1,6 +1,6 @@
-﻿using SistemaPontoCego.Domain.Entities;
-using SistemaPontoCego.Domain.Interfaces;
-using SistemaPontoCego.Infrastructure.Data;
+﻿using EstiloUrbano.Domain.Entities;
+using EstiloUrbano.Domain.Interfaces;
+using EstiloUrbano.Infrastructure.Data;
 
 public class PedidosRepository : IPedidosRepository
 {

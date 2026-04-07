@@ -1,4 +1,4 @@
-﻿namespace SistemaPontoCego.Domain.Interfaces;
+﻿namespace EstiloUrbano.Domain.Interfaces;
 
 
 public interface IEstoqueRepository

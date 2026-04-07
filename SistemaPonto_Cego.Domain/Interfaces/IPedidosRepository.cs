@@ -1,6 +1,6 @@
-﻿using SistemaPontoCego.Domain.Entities;
+﻿using EstiloUrbano.Domain.Entities;
 
-namespace SistemaPontoCego.Domain.Interfaces;
+namespace EstiloUrbano.Domain.Interfaces;
 
 public interface IPedidosRepository
 {

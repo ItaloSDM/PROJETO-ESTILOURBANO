@@ -1,4 +1,4 @@
-﻿using SistemaPontoCego.Domain.Interfaces;
+﻿using EstiloUrbano.Domain.Interfaces;
 
 public class EstoqueService
 {

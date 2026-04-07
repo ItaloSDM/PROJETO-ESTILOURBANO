@@ -1,8 +1,8 @@
-﻿using SistemaPontoCego.Domain.Entities;
-using SistemaPontoCego.Domain.Interfaces;
-using SistemaPontoCego.Infrastructure.Data;
+﻿using EstiloUrbano.Domain.Entities;
+using EstiloUrbano.Domain.Interfaces;
+using EstiloUrbano.Infrastructure.Data;
 
-namespace SistemaPontoCego.Infrastructure.Repositories
+namespace EstiloUrbano.Infrastructure.Repositories
 {
     public class TamanhosRepository : ITamanhosRepository
     {

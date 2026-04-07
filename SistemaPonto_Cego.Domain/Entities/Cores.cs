@@ -1,4 +1,4 @@
-﻿namespace SistemaPontoCego.Domain.Entities;
+﻿namespace EstiloUrbano.Domain.Entities;
 
 public class Cor
 {
