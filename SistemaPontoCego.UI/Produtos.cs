@@ -29,5 +29,30 @@ namespace EstiloUrbano.UI
         {
             Application.Exit();
         }
+
+        private void btnComprar1_Click(object sender, EventArgs e)
+        {
+            // O sistema checa a classe que você criou
+            if (UsuarioSessao.EstaLogado)
+            {
+                // Se estiver logado, abre a tela de Compra
+                Comprar telaCompra = new Comprar();
+                telaCompra.Show();
+                this.Hide();
+            }
+            else
+            {
+                // Se não estiver logado, manda para o Cadastro
+                MessageBox.Show("Você precisa estar logado para comprar!");
+                Cadastro telaCadastro = new Cadastro();
+                telaCadastro.Show();
+                this.Hide();
+            }
+        }
+
+        private void Produtos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

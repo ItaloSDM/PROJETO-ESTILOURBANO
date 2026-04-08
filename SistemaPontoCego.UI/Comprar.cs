@@ -14,5 +14,15 @@ namespace EstiloUrbano.UI
         {
             InitializeComponent();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

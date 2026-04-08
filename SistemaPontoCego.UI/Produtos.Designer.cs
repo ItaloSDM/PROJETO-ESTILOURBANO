@@ -84,6 +84,7 @@
             btnComprar1.TabIndex = 2;
             btnComprar1.Text = "\U0001f6d2";
             btnComprar1.UseVisualStyleBackColor = false;
+            btnComprar1.Click += btnComprar1_Click;
             // 
             // btnComprar2
             // 
@@ -97,6 +98,7 @@
             btnComprar2.TabIndex = 2;
             btnComprar2.Text = "\U0001f6d2";
             btnComprar2.UseVisualStyleBackColor = false;
+            btnComprar2.Click += btnComprar1_Click;
             // 
             // btnComprar3
             // 
@@ -110,6 +112,7 @@
             btnComprar3.TabIndex = 2;
             btnComprar3.Text = "\U0001f6d2";
             btnComprar3.UseVisualStyleBackColor = false;
+            btnComprar3.Click += btnComprar1_Click;
             // 
             // btnComprar4
             // 
@@ -123,6 +126,7 @@
             btnComprar4.TabIndex = 2;
             btnComprar4.Text = "\U0001f6d2";
             btnComprar4.UseVisualStyleBackColor = false;
+            btnComprar4.Click += btnComprar1_Click;
             // 
             // panel1
             // 
@@ -374,9 +378,9 @@
             // picUsuario
             // 
             picUsuario.Image = (Image)resources.GetObject("picUsuario.Image");
-            picUsuario.Location = new Point(432, 2);
+            picUsuario.Location = new Point(491, 59);
             picUsuario.Name = "picUsuario";
-            picUsuario.Size = new Size(139, 116);
+            picUsuario.Size = new Size(53, 46);
             picUsuario.SizeMode = PictureBoxSizeMode.StretchImage;
             picUsuario.TabIndex = 2;
             picUsuario.TabStop = false;
@@ -399,7 +403,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 33, 36);
-            ClientSize = new Size(574, 475);
+            ClientSize = new Size(556, 468);
             Controls.Add(textBox2);
             Controls.Add(picUsuario);
             Controls.Add(label13);
@@ -411,6 +415,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Produtos";
             Text = "Form1";
+            Click += Produtos_Click;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
