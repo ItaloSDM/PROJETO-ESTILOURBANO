@@ -32,25 +32,52 @@ namespace EstiloUrbano.UI
 
         private void btnComprar1_Click(object sender, EventArgs e)
         {
-            // O sistema checa a classe que você criou
-            if (UsuarioSessao.EstaLogado)
+            if (UsuarioLogado.IsAutenticado)
             {
-                // Se estiver logado, abre a tela de Compra
-                Comprar telaCompra = new Comprar();
-                telaCompra.Show();
-                this.Hide();
+                // Adiciona o produto na nossa lista global
+                UsuarioLogado.Carrinho.Add("Camisa Urbano");
+                MessageBox.Show("Camisa Urbano adicionada ao carrinho!");
             }
             else
             {
-                // Se não estiver logado, manda para o Cadastro
-                MessageBox.Show("Você precisa estar logado para comprar!");
-                Cadastro telaCadastro = new Cadastro();
-                telaCadastro.Show();
+                MessageBox.Show("Você precisa estar logado!");
+                new Cadastro().Show();
                 this.Hide();
             }
         }
 
         private void Produtos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnComprarCarrinho_Click(object sender, EventArgs e)
+        {
+            if (UsuarioLogado.IsAutenticado)
+            {
+                // Se estiver logado, abre a tela de Comprar.cs
+                new Comprar().Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Faça login para ver seu carrinho.");
+                new Cadastro().Show();
+                this.Hide();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Produtos_Load(object sender, EventArgs e)
         {
 
         }

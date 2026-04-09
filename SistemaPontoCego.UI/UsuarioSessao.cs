@@ -1,13 +1,15 @@
-﻿using System;
-
-namespace EstiloUrbano.UI
+﻿public static class UsuarioLogado
 {
-    public static class UsuarioSessao
-    {
-        // Se for 'false', o usuário cai no Cadastro. Se for 'true', vai pro Carrinho.
-        public static bool EstaLogado = false;
+    public static bool IsAutenticado { get; set; } = false;
 
-        // Aqui você pode guardar o nome ou e-mail de quem logou
-        public static string EmailUsuario = "";
-    }
+    // ADICIONE ESTA LINHA ABAIXO:
+    public static string Nome { get; set; }
+
+    public static List<string> Carrinho { get; set; } = new List<string>();
+
+    // Suas quantidades...
+    public static int QtdMoletom { get; set; } = 1;
+    public static int QtdCalca { get; set; } = 1;
+    public static int QtdShort { get; set; } = 1;
+    public static int QtdCamisa { get; set; } = 1;
 }

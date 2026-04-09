@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Comprar));
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            button1 = new Button();
             button2 = new Button();
+            button1 = new Button();
+            label3 = new Label();
             label4 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            pictureBox1 = new PictureBox();
             panel2 = new Panel();
             button3 = new Button();
             button4 = new Button();
@@ -62,13 +62,13 @@
             label16 = new Label();
             pictureBox4 = new PictureBox();
             panel5 = new Panel();
-            label17 = new Label();
-            label18 = new Label();
-            label19 = new Label();
+            label23 = new Label();
             label20 = new Label();
             label21 = new Label();
+            label19 = new Label();
             label22 = new Label();
-            label23 = new Label();
+            label18 = new Label();
+            label17 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -82,6 +82,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(64, 64, 64);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label3);
@@ -94,37 +95,25 @@
             panel1.Size = new Size(346, 94);
             panel1.TabIndex = 1;
             // 
-            // pictureBox1
+            // button2
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(10, 13);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(96, 67);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            button2.BackColor = Color.Red;
+            button2.Location = new Point(258, 60);
+            button2.Name = "button2";
+            button2.Size = new Size(22, 20);
+            button2.TabIndex = 4;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
-            // label1
+            // button1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(118, 13);
-            label1.Name = "label1";
-            label1.Size = new Size(113, 17);
-            label1.TabIndex = 1;
-            label1.Text = "Moletom Urbano";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(118, 65);
-            label2.Name = "label2";
-            label2.Size = new Size(69, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Tamanho: P";
-            label2.Click += label2_Click;
+            button1.BackColor = Color.LimeGreen;
+            button1.Location = new Point(258, 13);
+            button1.Name = "button1";
+            button1.Size = new Size(21, 20);
+            button1.TabIndex = 4;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // label3
             // 
@@ -137,24 +126,6 @@
             label3.TabIndex = 3;
             label3.Text = "R$ 129,99";
             // 
-            // button1
-            // 
-            button1.BackColor = Color.LimeGreen;
-            button1.Location = new Point(258, 13);
-            button1.Name = "button1";
-            button1.Size = new Size(21, 20);
-            button1.TabIndex = 4;
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.Red;
-            button2.Location = new Point(258, 60);
-            button2.Name = "button2";
-            button2.Size = new Size(22, 20);
-            button2.TabIndex = 4;
-            button2.UseVisualStyleBackColor = false;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -166,8 +137,41 @@
             label4.Text = "1";
             label4.Click += label2_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(118, 65);
+            label2.Name = "label2";
+            label2.Size = new Size(69, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Tamanho: P";
+            label2.Click += label2_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(118, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(113, 17);
+            label1.TabIndex = 1;
+            label1.Text = "Moletom Urbano";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, 13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(96, 67);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
             // panel2
             // 
+            panel2.BackColor = Color.FromArgb(64, 64, 64);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(label5);
@@ -188,6 +192,7 @@
             button3.Size = new Size(22, 20);
             button3.TabIndex = 4;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -197,6 +202,7 @@
             button4.Size = new Size(21, 20);
             button4.TabIndex = 4;
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // label5
             // 
@@ -254,6 +260,7 @@
             // 
             // panel3
             // 
+            panel3.BackColor = Color.FromArgb(64, 64, 64);
             panel3.Controls.Add(button5);
             panel3.Controls.Add(button6);
             panel3.Controls.Add(label9);
@@ -274,6 +281,7 @@
             button5.Size = new Size(22, 20);
             button5.TabIndex = 4;
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button6
             // 
@@ -283,6 +291,7 @@
             button6.Size = new Size(21, 20);
             button6.TabIndex = 4;
             button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // label9
             // 
@@ -340,6 +349,7 @@
             // 
             // panel4
             // 
+            panel4.BackColor = Color.FromArgb(64, 64, 64);
             panel4.Controls.Add(button7);
             panel4.Controls.Add(button8);
             panel4.Controls.Add(label13);
@@ -360,6 +370,7 @@
             button7.Size = new Size(22, 20);
             button7.TabIndex = 4;
             button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button8
             // 
@@ -369,6 +380,7 @@
             button8.Size = new Size(21, 20);
             button8.TabIndex = 4;
             button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // label13
             // 
@@ -426,6 +438,7 @@
             // 
             // panel5
             // 
+            panel5.BackColor = Color.FromArgb(64, 64, 64);
             panel5.Controls.Add(label23);
             panel5.Controls.Add(label20);
             panel5.Controls.Add(label21);
@@ -433,51 +446,28 @@
             panel5.Controls.Add(label22);
             panel5.Controls.Add(label18);
             panel5.Controls.Add(label17);
-            panel5.Location = new Point(447, 34);
+            panel5.Location = new Point(447, 148);
             panel5.Name = "panel5";
-            panel5.Size = new Size(321, 215);
+            panel5.Size = new Size(321, 278);
             panel5.TabIndex = 2;
             // 
-            // label17
+            // label23
             // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.Gold;
-            label17.Location = new Point(47, 23);
-            label17.Name = "label17";
-            label17.Size = new Size(105, 32);
-            label17.TabIndex = 0;
-            label17.Text = "Resumo";
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label18.ForeColor = Color.White;
-            label18.Location = new Point(49, 85);
-            label18.Name = "label18";
-            label18.Size = new Size(63, 17);
-            label18.TabIndex = 0;
-            label18.Text = "Subtotal: ";
-            label18.Click += label18_Click;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.White;
-            label19.Location = new Point(49, 111);
-            label19.Name = "label19";
-            label19.Size = new Size(70, 17);
-            label19.TabIndex = 0;
-            label19.Text = "Desconto: ";
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label23.ForeColor = Color.Gold;
+            label23.Location = new Point(198, 176);
+            label23.Name = "label23";
+            label23.Size = new Size(59, 25);
+            label23.TabIndex = 0;
+            label23.Text = "Valor";
             // 
             // label20
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label20.ForeColor = Color.Gold;
-            label20.Location = new Point(47, 167);
+            label20.Location = new Point(13, 176);
             label20.Name = "label20";
             label20.Size = new Size(65, 25);
             label20.TabIndex = 0;
@@ -488,34 +478,57 @@
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label21.ForeColor = Color.White;
-            label21.Location = new Point(234, 111);
+            label21.Location = new Point(200, 120);
             label21.Name = "label21";
             label21.Size = new Size(37, 17);
             label21.TabIndex = 0;
             label21.Text = "valor";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label19.ForeColor = Color.White;
+            label19.Location = new Point(15, 120);
+            label19.Name = "label19";
+            label19.Size = new Size(70, 17);
+            label19.TabIndex = 0;
+            label19.Text = "Desconto: ";
             // 
             // label22
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label22.ForeColor = Color.White;
-            label22.Location = new Point(234, 85);
+            label22.Location = new Point(200, 94);
             label22.Name = "label22";
             label22.Size = new Size(37, 17);
             label22.TabIndex = 0;
             label22.Text = "valor";
             label22.Click += label18_Click;
             // 
-            // label23
+            // label18
             // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label23.ForeColor = Color.Gold;
-            label23.Location = new Point(232, 167);
-            label23.Name = "label23";
-            label23.Size = new Size(59, 25);
-            label23.TabIndex = 0;
-            label23.Text = "Valor";
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label18.ForeColor = Color.White;
+            label18.Location = new Point(15, 94);
+            label18.Name = "label18";
+            label18.Size = new Size(63, 17);
+            label18.TabIndex = 0;
+            label18.Text = "Subtotal: ";
+            label18.Click += label18_Click;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.Gold;
+            label17.Location = new Point(14, 32);
+            label17.Name = "label17";
+            label17.Size = new Size(105, 32);
+            label17.TabIndex = 0;
+            label17.Text = "Resumo";
             // 
             // Comprar
             // 
@@ -531,6 +544,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Comprar";
             Text = "Compra";
+            Load += Comprar_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

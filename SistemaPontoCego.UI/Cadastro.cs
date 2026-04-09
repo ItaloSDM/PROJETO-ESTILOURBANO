@@ -40,6 +40,11 @@ namespace EstiloUrbano.UI
             // 2. Comparação com os dados salvos
             if (txtEmailLogin.Text == emailCadastrado && txtSenhaLogin.Text == senhaCadastrada)
             {
+                // --- ADICIONADO AQUI ---
+                UsuarioLogado.IsAutenticado = true;
+                UsuarioLogado.Nome = txtEmailLogin.Text;
+                // -----------------------
+
                 MessageBox.Show("Login realizado!");
                 new Produtos().Show();
                 this.Hide();
@@ -54,9 +59,9 @@ namespace EstiloUrbano.UI
         {
             // 1. Verificação de campos vazios
             if (string.IsNullOrWhiteSpace(txtNomeCadastro.Text) ||
-                 string.IsNullOrWhiteSpace(txtEmailCadastro.Text) ||
-                 string.IsNullOrWhiteSpace(txtCpf.Text) ||
-                 string.IsNullOrWhiteSpace(txtSenhaCadastro.Text))
+                string.IsNullOrWhiteSpace(txtEmailCadastro.Text) ||
+                string.IsNullOrWhiteSpace(txtCpf.Text) ||
+                string.IsNullOrWhiteSpace(txtSenhaCadastro.Text))
             {
                 MessageBox.Show("Todos os campos são obrigatórios!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -70,12 +75,25 @@ namespace EstiloUrbano.UI
                 return;
             }
 
-            // ... (resto do seu código de salvar nas variáveis globais e MessageBox de sucesso)
+            // Salvando os dados nas variáveis (seu código atual)
             emailCadastrado = txtEmailCadastro.Text;
             senhaCadastrada = txtSenhaCadastro.Text;
 
-            MessageBox.Show("Cadastrado com sucesso!");
-            // (Limpar campos...)
+            // --- ADICIONADO AQUI ---
+            // Já loga o usuário automaticamente ao finalizar o cadastro
+            UsuarioLogado.IsAutenticado = true;
+            UsuarioLogado.Nome = txtNomeCadastro.Text;
+            // -----------------------
+
+            MessageBox.Show("Cadastro realizado com sucesso!");
+
+            new Produtos().Show();
+            this.Hide();
+        }
+
+        private void Cadastro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

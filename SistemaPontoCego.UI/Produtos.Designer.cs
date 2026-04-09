@@ -32,6 +32,7 @@
             Button btnComprar2;
             Button btnComprar3;
             Button btnComprar4;
+            Button btnComprarCarrinho;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Produtos));
             panel1 = new Panel();
             label3 = new Label();
@@ -57,10 +58,12 @@
             label13 = new Label();
             picUsuario = new PictureBox();
             textBox2 = new TextBox();
+            panel5 = new Panel();
             btnComprar1 = new Button();
             btnComprar2 = new Button();
             btnComprar3 = new Button();
             btnComprar4 = new Button();
+            btnComprarCarrinho = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -70,6 +73,7 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picUsuario).BeginInit();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // btnComprar1
@@ -127,6 +131,20 @@
             btnComprar4.Text = "\U0001f6d2";
             btnComprar4.UseVisualStyleBackColor = false;
             btnComprar4.Click += btnComprar1_Click;
+            // 
+            // btnComprarCarrinho
+            // 
+            btnComprarCarrinho.BackColor = Color.DarkOliveGreen;
+            btnComprarCarrinho.FlatStyle = FlatStyle.Flat;
+            btnComprarCarrinho.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnComprarCarrinho.ForeColor = SystemColors.ControlLightLight;
+            btnComprarCarrinho.Location = new Point(417, 34);
+            btnComprarCarrinho.Name = "btnComprarCarrinho";
+            btnComprarCarrinho.Size = new Size(54, 45);
+            btnComprarCarrinho.TabIndex = 2;
+            btnComprarCarrinho.Text = "\U0001f6d2";
+            btnComprarCarrinho.UseVisualStyleBackColor = false;
+            btnComprarCarrinho.Click += btnComprarCarrinho_Click;
             // 
             // panel1
             // 
@@ -358,17 +376,18 @@
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.ForeColor = SystemColors.Window;
-            textBox1.Location = new Point(9, 88);
+            textBox1.Location = new Point(3, 76);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(147, 18);
+            textBox1.Size = new Size(183, 18);
             textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.BackColor = Color.DarkSlateGray;
             label13.ForeColor = SystemColors.Window;
-            label13.Location = new Point(134, 90);
+            label13.Location = new Point(167, 78);
             label13.Name = "label13";
             label13.Size = new Size(19, 15);
             label13.TabIndex = 1;
@@ -378,12 +397,13 @@
             // picUsuario
             // 
             picUsuario.Image = (Image)resources.GetObject("picUsuario.Image");
-            picUsuario.Location = new Point(491, 59);
+            picUsuario.Location = new Point(498, 3);
             picUsuario.Name = "picUsuario";
-            picUsuario.Size = new Size(53, 46);
+            picUsuario.Size = new Size(57, 43);
             picUsuario.SizeMode = PictureBoxSizeMode.StretchImage;
             picUsuario.TabIndex = 2;
             picUsuario.TabStop = false;
+            picUsuario.Click += picUsuario_Click;
             // 
             // textBox2
             // 
@@ -391,12 +411,24 @@
             textBox2.BorderStyle = BorderStyle.None;
             textBox2.Font = new Font("Segoe Script", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.ForeColor = SystemColors.Window;
-            textBox2.Location = new Point(0, 12);
+            textBox2.Location = new Point(-29, 14);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(257, 34);
             textBox2.TabIndex = 0;
             textBox2.Text = "Estilo Urbano ⚡";
             textBox2.TextAlign = HorizontalAlignment.Center;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(picUsuario);
+            panel5.Controls.Add(label13);
+            panel5.Controls.Add(btnComprarCarrinho);
+            panel5.Controls.Add(textBox2);
+            panel5.Controls.Add(textBox1);
+            panel5.Location = new Point(1, -2);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(555, 97);
+            panel5.TabIndex = 3;
             // 
             // Produtos
             // 
@@ -404,10 +436,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 33, 36);
             ClientSize = new Size(556, 468);
-            Controls.Add(textBox2);
-            Controls.Add(picUsuario);
-            Controls.Add(label13);
-            Controls.Add(textBox1);
+            Controls.Add(panel5);
             Controls.Add(panel3);
             Controls.Add(panel4);
             Controls.Add(panel2);
@@ -415,6 +444,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Produtos";
             Text = "Form1";
+            Load += Produtos_Load;
             Click += Produtos_Click;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -429,8 +459,9 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)picUsuario).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -459,5 +490,6 @@
         private TextBox textBox1;
         private PictureBox picUsuario;
         private TextBox textBox2;
+        private Panel panel5;
     }
 }

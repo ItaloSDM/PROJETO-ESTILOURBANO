@@ -321,6 +321,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Cadastro";
             Text = "Cadastro";
+            Load += Cadastro_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel1.ResumeLayout(false);
