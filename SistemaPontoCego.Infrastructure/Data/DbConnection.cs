@@ -1,15 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using EstiloUrbano.Infrastructure.Data;
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 
-namespace EstiloUrbano.Infrastructure
+namespace EstiloUrbano.Infrastructure.Data
 {
     public class DbConnection
     {
-        public static void ConfigurarServicos(IServiceCollection services)
+        // Esse é o "endereço" do seu banco que vimos nas fotos anteriores
+        private static string connectionString = @"Server=.\SQLEXPRESS;Database=EstiloUrbanoDB;Trusted_Connection=True;TrustServerCertificate=True;";
+
+        public static SqlConnection GetConnection()
         {
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Server=localhost;Database=ESTILOURBANO;Trusted_Connection=True;TrustServerCertificate=True;"));
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // Se a conexão estiver fechada, ele abre automaticamente
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+
+            return connection;
         }
     }
 }

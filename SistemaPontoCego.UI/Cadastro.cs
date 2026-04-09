@@ -1,99 +1,103 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;       // Adicionado para o SQL
+using EstiloUrbano.Infrastructure.Data; // Adicionado para achar sua conexão
 
 namespace EstiloUrbano.UI
 {
     public partial class Cadastro : Form
     {
-        private string emailCadastrado;
-        private string senhaCadastrada;
-
         public Cadastro()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // --- BOTÃO DE LOGIN (button1) ---
         private void button1_Click(object sender, EventArgs e)
         {
-            // 1. Validação do '@' no login
             if (!txtEmailLogin.Text.Contains("@"))
             {
-                MessageBox.Show("Por favor, insira um e-mail válido para logar.", "Erro de Formato", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Por favor, insira um e-mail válido.");
                 return;
             }
 
-            // 2. Comparação com os dados salvos
-            if (txtEmailLogin.Text == emailCadastrado && txtSenhaLogin.Text == senhaCadastrada)
+            try
             {
-                // --- ADICIONADO AQUI ---
-                UsuarioLogado.IsAutenticado = true;
-                UsuarioLogado.Nome = txtEmailLogin.Text;
-                // -----------------------
+                using (SqlConnection conexao = DbConnection.GetConnection())
+                {
+                    // Busca o usuário no banco de dados
+                    string query = "SELECT IdUsuario, Nome FROM Usuarios WHERE Email = @email AND Senha = @senha";
+                    SqlCommand cmd = new SqlCommand(query, conexao);
+                    cmd.Parameters.AddWithValue("@email", txtEmailLogin.Text);
+                    cmd.Parameters.AddWithValue("@senha", txtSenhaLogin.Text);
 
-                MessageBox.Show("Login realizado!");
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read()) // Se encontrou alguém no banco
+                    {
+                        // Salva quem logou para usar na tela de pagamento depois
+                        UsuarioLogado.IsAutenticado = true;
+                        UsuarioLogado.Nome = reader["Nome"].ToString();
+                        // Dica: Se você tiver UsuarioLogado.Id, salve aqui também: 
+                        // UsuarioLogado.Id = Convert.ToInt32(reader["IdUsuario"]);
+
+                        MessageBox.Show("Login realizado com sucesso!");
+                        new Produtos().Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email ou Senha incorretos!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao conectar no banco: " + ex.Message);
+            }
+        }
+
+        // --- BOTÃO DE CADASTRO (button2) ---
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNomeCadastro.Text) || string.IsNullOrWhiteSpace(txtEmailCadastro.Text))
+            {
+                MessageBox.Show("Todos os campos são obrigatórios!");
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conexao = DbConnection.GetConnection())
+                {
+                    // COMANDO PARA SALVAR NO SQL SERVER
+                    string query = "INSERT INTO Usuarios (Nome, Email, Senha, DataCadastro) VALUES (@nome, @email, @senha, GETDATE())";
+
+                    SqlCommand cmd = new SqlCommand(query, conexao);
+                    cmd.Parameters.AddWithValue("@nome", txtNomeCadastro.Text);
+                    cmd.Parameters.AddWithValue("@email", txtEmailCadastro.Text);
+                    cmd.Parameters.AddWithValue("@senha", txtSenhaCadastro.Text);
+
+                    cmd.ExecuteNonQuery(); // Grava no banco!
+                }
+
+                MessageBox.Show("Cadastro realizado e salvo no Banco de Dados!");
+
+                // Define quem está logado após cadastrar
+                UsuarioLogado.IsAutenticado = true;
+                UsuarioLogado.Nome = txtNomeCadastro.Text;
+
                 new Produtos().Show();
                 this.Hide();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Dados incorretos!");
+                MessageBox.Show("Erro ao salvar cadastro: " + ex.Message);
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // 1. Verificação de campos vazios
-            if (string.IsNullOrWhiteSpace(txtNomeCadastro.Text) ||
-                string.IsNullOrWhiteSpace(txtEmailCadastro.Text) ||
-                string.IsNullOrWhiteSpace(txtCpf.Text) ||
-                string.IsNullOrWhiteSpace(txtSenhaCadastro.Text))
-            {
-                MessageBox.Show("Todos os campos são obrigatórios!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 2. Validação do '@' no e-mail do cadastro
-            if (!txtEmailCadastro.Text.Contains("@"))
-            {
-                MessageBox.Show("O e-mail de cadastro precisa ser válido (conter '@')!", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtEmailCadastro.Focus();
-                return;
-            }
-
-            // Salvando os dados nas variáveis (seu código atual)
-            emailCadastrado = txtEmailCadastro.Text;
-            senhaCadastrada = txtSenhaCadastro.Text;
-
-            // --- ADICIONADO AQUI ---
-            // Já loga o usuário automaticamente ao finalizar o cadastro
-            UsuarioLogado.IsAutenticado = true;
-            UsuarioLogado.Nome = txtNomeCadastro.Text;
-            // -----------------------
-
-            MessageBox.Show("Cadastro realizado com sucesso!");
-
-            new Produtos().Show();
-            this.Hide();
-        }
-
-        private void Cadastro_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void label1_Click(object sender, EventArgs e) { }
+        private void label7_Click(object sender, EventArgs e) { }
+        private void Cadastro_Load(object sender, EventArgs e) { }
     }
 }

@@ -224,7 +224,6 @@
             Name = "Pagamento";
             Padding = new Padding(8);
             Text = "Pagamento";
-
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
