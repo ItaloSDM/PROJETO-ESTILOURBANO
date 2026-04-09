@@ -113,5 +113,21 @@ namespace EstiloUrbano.UI
                 AtualizarValores();
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            // 1. Cria uma nova instância da tela de Pagamento
+            // 1. Criamos a variável com o nome 'tela'
+            Pagamento tela = new Pagamento(label23.Text);
+
+            // 2. Usamos o MESMO nome 'tela' para mostrar
+            tela.Show();
+
+            // 3. Escondemos a tela atual
+            this.Hide();
+
+            // 3. Opcional: Fecha ou oculta a tela atual (Carrinho/Compra)
+            this.Hide();
+        }
     }
 }

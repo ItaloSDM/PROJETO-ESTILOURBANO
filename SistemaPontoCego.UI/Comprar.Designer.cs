@@ -69,6 +69,7 @@
             label22 = new Label();
             label18 = new Label();
             label17 = new Label();
+            button9 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -143,7 +144,7 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(118, 65);
             label2.Name = "label2";
-            label2.Size = new Size(69, 15);
+            label2.Size = new Size(70, 15);
             label2.TabIndex = 2;
             label2.Text = "Tamanho: P";
             label2.Click += label2_Click;
@@ -232,7 +233,7 @@
             label7.ForeColor = Color.White;
             label7.Location = new Point(118, 65);
             label7.Name = "label7";
-            label7.Size = new Size(69, 15);
+            label7.Size = new Size(70, 15);
             label7.TabIndex = 2;
             label7.Text = "Tamanho: P";
             label7.Click += label2_Click;
@@ -321,7 +322,7 @@
             label11.ForeColor = Color.White;
             label11.Location = new Point(118, 65);
             label11.Name = "label11";
-            label11.Size = new Size(69, 15);
+            label11.Size = new Size(70, 15);
             label11.TabIndex = 2;
             label11.Text = "Tamanho: P";
             label11.Click += label2_Click;
@@ -410,7 +411,7 @@
             label15.ForeColor = Color.White;
             label15.Location = new Point(118, 65);
             label15.Name = "label15";
-            label15.Size = new Size(69, 15);
+            label15.Size = new Size(70, 15);
             label15.TabIndex = 2;
             label15.Text = "Tamanho: P";
             label15.Click += label2_Click;
@@ -439,6 +440,7 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(64, 64, 64);
+            panel5.Controls.Add(button9);
             panel5.Controls.Add(label23);
             panel5.Controls.Add(label20);
             panel5.Controls.Add(label21);
@@ -530,6 +532,19 @@
             label17.TabIndex = 0;
             label17.Text = "Resumo";
             // 
+            // button9
+            // 
+            button9.BackColor = Color.Green;
+            button9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button9.ForeColor = SystemColors.ControlLightLight;
+            button9.Location = new Point(74, 229);
+            button9.Name = "button9";
+            button9.Size = new Size(171, 35);
+            button9.TabIndex = 1;
+            button9.Text = "Ir Para o Pagamento";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
+            // 
             // Comprar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -604,5 +619,6 @@
         private Label label21;
         private Label label23;
         private Label label22;
+        private Button button9;
     }
 }
