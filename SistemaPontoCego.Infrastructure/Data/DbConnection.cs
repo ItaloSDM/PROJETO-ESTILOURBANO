@@ -6,17 +6,25 @@ namespace EstiloUrbano.Infrastructure.Data
 {
     public class DbConnection
     {
-        // Esse é o "endereço" do seu banco que vimos nas fotos anteriores
-        private static string connectionString = @"Server=.\SQLEXPRESS;Database=EstiloUrbanoDB;Trusted_Connection=True;TrustServerCertificate=True;";
+        // Endereço atualizado conforme seu último print (LocalDB)
+        private static string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=EstiloUrbanoDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public static SqlConnection GetConnection()
         {
             SqlConnection connection = new SqlConnection(connectionString);
 
-            // Se a conexão estiver fechada, ele abre automaticamente
-            if (connection.State == ConnectionState.Closed)
+            try
             {
-                connection.Open();
+                // Abre a conexão antes de retornar para o Repository
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Caso dê erro de conexão (ex: SQL parado), avisa no console
+                Console.WriteLine("Erro ao conectar ao banco: " + ex.Message);
             }
 
             return connection;

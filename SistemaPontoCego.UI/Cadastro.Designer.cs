@@ -131,7 +131,6 @@
             label1.Size = new Size(41, 15);
             label1.TabIndex = 2;
             label1.Text = "Senha";
-            label1.Click += label1_Click;
             // 
             // txtSenhaLogin
             // 
@@ -236,7 +235,6 @@
             label10.Size = new Size(41, 15);
             label10.TabIndex = 2;
             label10.Text = "E-mail";
-            label10.Click += label7_Click;
             // 
             // label7
             // 
@@ -250,7 +248,6 @@
             label7.Size = new Size(41, 15);
             label7.TabIndex = 2;
             label7.Text = "Nome";
-            label7.Click += label7_Click;
             // 
             // label9
             // 
@@ -263,7 +260,6 @@
             label9.Size = new Size(41, 15);
             label9.TabIndex = 2;
             label9.Text = "Senha";
-            label9.Click += label1_Click;
             // 
             // label8
             // 
@@ -276,7 +272,6 @@
             label8.Size = new Size(27, 15);
             label8.TabIndex = 2;
             label8.Text = "CPF";
-            label8.Click += label1_Click;
             // 
             // txtSenhaCadastro
             // 

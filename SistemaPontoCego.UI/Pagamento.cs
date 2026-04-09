@@ -18,26 +18,27 @@ namespace EstiloUrbano.UI
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             modoSelecionado = "PIX";
-            MessageBox.Show("Você selecionou: PIX");
+            MessageBox.Show("Selecionado: PIX");
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             modoSelecionado = "Cartão de Crédito";
-            MessageBox.Show("Você selecionou: Cartão");
+            MessageBox.Show("Selecionado: Cartão");
         }
 
         private void pictureBoxBoleto_Click(object sender, EventArgs e)
         {
             modoSelecionado = "Boleto Bancário";
-            MessageBox.Show("Você selecionou: Boleto");
+            MessageBox.Show("Selecionado: Boleto");
         }
 
+        // --- BOTÃO CONFIRMAR PAGAMENTO ---
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(modoSelecionado))
             {
-                MessageBox.Show("Por favor, selecione uma forma de pagamento!");
+                MessageBox.Show("Selecione uma forma de pagamento!");
                 return;
             }
 
@@ -45,27 +46,31 @@ namespace EstiloUrbano.UI
             {
                 using (SqlConnection conexao = DbConnection.GetConnection())
                 {
-                    string query = "INSERT INTO Vendas (ValorTotal, MetodoPagamento, DataVenda) VALUES (@valor, @metodo, GETDATE())";
+                    // ATUALIZAÇÃO: Agora enviamos o IdUsuario capturado no login
+                    string query = "INSERT INTO Vendas (IdUsuario, ValorTotal, MetodoPagamento) VALUES (@id, @valor, @metodo)";
 
                     using (SqlCommand cmd = new SqlCommand(query, conexao))
                     {
-                        cmd.Parameters.AddWithValue("@valor", label2.Text);
+                        // Aqui o @id recebe o valor que guardamos na classe UsuarioLogado
+                        cmd.Parameters.AddWithValue("@id", UsuarioLogado.Id);
+                        cmd.Parameters.AddWithValue("@valor", label2.Text.Replace("R$", "").Trim());
                         cmd.Parameters.AddWithValue("@metodo", modoSelecionado);
+
                         cmd.ExecuteNonQuery();
                     }
                 }
 
-                MessageBox.Show("Venda salva com sucesso!");
-                Produtos telaLoja = new Produtos();
-                telaLoja.Show();
+                MessageBox.Show($"Sucesso! Venda registrada para o cliente {UsuarioLogado.Nome}.");
+
+                new Produtos().Show();
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar: " + ex.Message);
+                MessageBox.Show("Erro ao registrar venda: " + ex.Message);
             }
         }
 
         private void Pagamento_Load(object sender, EventArgs e) { }
-    } // Aqui fecha a classe
-} // Aqui fecha o namespace
+    }
+}

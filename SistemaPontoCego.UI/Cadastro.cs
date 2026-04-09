@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Data.SqlClient;       // Adicionado para o SQL
-using EstiloUrbano.Infrastructure.Data; // Adicionado para achar sua conexão
+using System.Data.SqlClient;
+using EstiloUrbano.Infrastructure.Data;
 
 namespace EstiloUrbano.UI
 {
@@ -12,12 +12,12 @@ namespace EstiloUrbano.UI
             InitializeComponent();
         }
 
-        // --- BOTÃO DE LOGIN (button1) ---
+        // --- BOTÃO DE LOGIN ---
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!txtEmailLogin.Text.Contains("@"))
+            if (string.IsNullOrWhiteSpace(txtEmailLogin.Text))
             {
-                MessageBox.Show("Por favor, insira um e-mail válido.");
+                MessageBox.Show("Insira o e-mail.");
                 return;
             }
 
@@ -25,44 +25,44 @@ namespace EstiloUrbano.UI
             {
                 using (SqlConnection conexao = DbConnection.GetConnection())
                 {
-                    // Busca o usuário no banco de dados
+                    // Buscamos o IdUsuario e o Nome do banco
                     string query = "SELECT IdUsuario, Nome FROM Usuarios WHERE Email = @email AND Senha = @senha";
                     SqlCommand cmd = new SqlCommand(query, conexao);
-                    cmd.Parameters.AddWithValue("@email", txtEmailLogin.Text);
-                    cmd.Parameters.AddWithValue("@senha", txtSenhaLogin.Text);
+                    cmd.Parameters.AddWithValue("@email", txtEmailLogin.Text.Trim());
+                    cmd.Parameters.AddWithValue("@senha", txtSenhaLogin.Text.Trim());
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read()) // Se encontrou alguém no banco
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Salva quem logou para usar na tela de pagamento depois
-                        UsuarioLogado.IsAutenticado = true;
-                        UsuarioLogado.Nome = reader["Nome"].ToString();
-                        // Dica: Se você tiver UsuarioLogado.Id, salve aqui também: 
-                        // UsuarioLogado.Id = Convert.ToInt32(reader["IdUsuario"]);
+                        if (reader.Read())
+                        {
+                            // ATUALIZAÇÃO: Guardamos o ID e o Nome na sessão
+                            UsuarioLogado.IsAutenticado = true;
+                            UsuarioLogado.Nome = reader["Nome"].ToString();
+                            UsuarioLogado.Id = Convert.ToInt32(reader["IdUsuario"]);
 
-                        MessageBox.Show("Login realizado com sucesso!");
-                        new Produtos().Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Email ou Senha incorretos!");
+                            MessageBox.Show($"Bem-vindo, {UsuarioLogado.Nome}!");
+                            new Produtos().Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("E-mail ou Senha incorretos!");
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao conectar no banco: " + ex.Message);
+                MessageBox.Show("Erro ao conectar: " + ex.Message);
             }
         }
 
-        // --- BOTÃO DE CADASTRO (button2) ---
+        // --- BOTÃO DE CADASTRO ---
         private void button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNomeCadastro.Text) || string.IsNullOrWhiteSpace(txtEmailCadastro.Text))
             {
-                MessageBox.Show("Todos os campos são obrigatórios!");
+                MessageBox.Show("Preencha todos os campos!");
                 return;
             }
 
@@ -70,34 +70,28 @@ namespace EstiloUrbano.UI
             {
                 using (SqlConnection conexao = DbConnection.GetConnection())
                 {
-                    // COMANDO PARA SALVAR NO SQL SERVER
-                    string query = "INSERT INTO Usuarios (Nome, Email, Senha, DataCadastro) VALUES (@nome, @email, @senha, GETDATE())";
-
-                    SqlCommand cmd = new SqlCommand(query, conexao);
-                    cmd.Parameters.AddWithValue("@nome", txtNomeCadastro.Text);
-                    cmd.Parameters.AddWithValue("@email", txtEmailCadastro.Text);
-                    cmd.Parameters.AddWithValue("@senha", txtSenhaCadastro.Text);
-
-                    cmd.ExecuteNonQuery(); // Grava no banco!
+                    string query = "INSERT INTO Usuarios (Nome, Email, Senha) VALUES (@nome, @email, @senha)";
+                    using (SqlCommand cmd = new SqlCommand(query, conexao))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", txtNomeCadastro.Text.Trim());
+                        cmd.Parameters.AddWithValue("@email", txtEmailCadastro.Text.Trim());
+                        cmd.Parameters.AddWithValue("@senha", txtSenhaCadastro.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                    }
                 }
 
-                MessageBox.Show("Cadastro realizado e salvo no Banco de Dados!");
-
-                // Define quem está logado após cadastrar
-                UsuarioLogado.IsAutenticado = true;
-                UsuarioLogado.Nome = txtNomeCadastro.Text;
-
-                new Produtos().Show();
-                this.Hide();
+                MessageBox.Show("Cadastro realizado! Por favor, faça login para continuar.");
+                // Limpa os campos para o usuário logar
+                txtNomeCadastro.Clear();
+                txtEmailCadastro.Clear();
+                txtSenhaCadastro.Clear();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar cadastro: " + ex.Message);
+                MessageBox.Show("Erro ao salvar: " + ex.Message);
             }
         }
 
-        private void label1_Click(object sender, EventArgs e) { }
-        private void label7_Click(object sender, EventArgs e) { }
         private void Cadastro_Load(object sender, EventArgs e) { }
     }
 }
